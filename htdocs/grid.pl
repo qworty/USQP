@@ -16,10 +16,13 @@ my %grid_size = (
 my @grid;
 
 site($cgi->header());
+site(printHeader());
 
 randomWalls(1000);
 
 buildGrid();
+
+site(printFooter());
 
 printSite();
 
@@ -44,6 +47,12 @@ sub buildGrid{
 	}
 }
 
+sub printHeader{
+  return "<html><head><title></title><style>html{font-family:mono;}</style></head><body>";
+}
+sub printFooter{
+  return "</body></html>";
+}
 sub site{
   push @buffer, $_[0];
 }
