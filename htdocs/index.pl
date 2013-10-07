@@ -8,6 +8,7 @@ $0 =~ m|(.*?)/|;
 my $path = $1;
 my @buffer;
 my $xmlparse = $xml->XMLin("db.xml");
+my %db;
 $db{db} = $xmlparse->{database}{name};
 $db{host} = $xmlparse->{database}{host};
 $db{user} = $xmlparse->{database}{read}{user};
