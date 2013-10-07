@@ -9,8 +9,8 @@ my $cgi = new CGI;
 my @buffer;
 
 my %grid_size = (
-	'x' => 100,
-	'y' => 100,
+	'x' => 30,
+	'y' => 30,
 	);
 
 my @grid;
@@ -18,7 +18,7 @@ my @grid;
 site($cgi->header());
 site(printHeader());
 
-randomWalls(1000);
+randomWalls(300);
 
 buildGrid();
 
@@ -39,9 +39,9 @@ sub buildGrid{
 		site('</br>');
 		for(my $y = 0; $y < $grid_size{'y'}; $y++){
 			if(!defined($grid[$x][$y])){
-				site('O');
+				site('<div style="height:10px;width:10px"></div>');
 			} elsif($grid[$x][$y] eq 'wall'){
-				site('#');
+				site('<div style="height:10px;width:10px;background-color:grey"></div>');
 			}
 		}
 	}
