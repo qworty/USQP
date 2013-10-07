@@ -4,6 +4,8 @@ use warnings FATAL=>'all';
 use DBI;
 use CGI;
 use XML::Simple;
+my $cgi = new CGI;
+my $session = CGI::Session->new or die CGI::Session->errstr;
 $0 =~ m|(.*?)/|;
 my $path = $1;
 my @buffer;
@@ -16,8 +18,6 @@ $db{pass} = $xmlparse->{database}{read}{password};
 my %vars = $cgi->Vars;
 my %text;
 my ($null, @request) = split("/",$ENV{REQUEST_URI});
-my $cgi = new CGI;
-my $session = CGI::Session->new or die CGI::Session->errstr;
 my $dbh = DBI->connect("DBI:mysql:database=$db{db};host=$db{host}","$db{user}", "$db{pass}", {'RaiseError' => 1}) or die "No connection was made with the mysql: $db{db} database";
 
 site($cgi->header());
