@@ -40,9 +40,9 @@ sub buildGrid{
 		site('<div>');
 		for(my $y = 0; $y < $grid_size{'y'}; $y++){
 			if(!defined($grid[$x][$y])){
-				site('<div style="height:10px;width:10px"></div>');
+				site('<div style="height:10px;width:10px;display:inline-block;"></div>');
 			} elsif($grid[$x][$y] eq 'wall'){
-				site('<div style="height:10px;width:10px;background-color:grey"></div>');
+				site('<div style="height:10px;width:10px;background-color:grey;display:inline-block;"></div>');
 			}
 		}
 		site('</div>');
