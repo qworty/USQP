@@ -2,7 +2,10 @@
 use strict;
 use warnings FATAL=>'all';
 
-my $grid_size = 100;
+my %grid_size = (
+	'x' => 100;
+	'y' => 100;
+	);
 
 my @grid;
 
@@ -19,9 +22,9 @@ sub random_walls{
 }
 
 sub print_grid{
-	for(my $x = 0; $x < $grid_size; $x++){
+	for(my $x = 0; $x < $grid_size{'x'}; $x++){
 		print "\n";
-		for(my $y = 0; $y < $grid_size; $y++){
+		for(my $y = 0; $y < $grid_size{'y'}; $y++){
 			if(!defined($grid[$x][$y])){
 				print "O";
 			} elsif($grid[$x][$y] eq 'wall'){
