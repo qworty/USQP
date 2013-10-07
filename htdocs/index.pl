@@ -6,6 +6,7 @@ use CGI;
 use XML::Simple;
 my $cgi = new CGI;
 my $session = CGI::Session->new or die CGI::Session->errstr;
+my $xml = new XML::Simple;
 $0 =~ m|(.*?)/|;
 my $path = $1;
 my @buffer;
