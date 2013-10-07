@@ -37,7 +37,7 @@ sub randomWalls{
 sub buildGrid{
 	site('<div style="background-color:black;">');
 	for(my $x = 0; $x < $grid_size{'x'}; $x++){
-		site('<div style="width:'.$grid_size{'x'}*10.'">');
+		site('<div>');
 		for(my $y = 0; $y < $grid_size{'y'}; $y++){
 			if(!defined($grid[$x][$y])){
 				site('<div style="height:10px;width:10px;display:inline-block;background-color:white;"></div>');
