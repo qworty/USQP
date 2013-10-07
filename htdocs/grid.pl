@@ -9,8 +9,8 @@ my $cgi = new CGI;
 my @buffer;
 
 my %grid_size = (
-	'x' => 30,
-	'y' => 30,
+	'x' => 50,
+	'y' => 50,
 	);
 
 my @grid;
@@ -35,7 +35,7 @@ sub randomWalls{
 }
 
 sub buildGrid{
-	site('<div style="background-color:black;">');
+	site('<div style="text-align:center;">');
 	for(my $x = 0; $x < $grid_size{'x'}; $x++){
 		site('<div>');
 		for(my $y = 0; $y < $grid_size{'y'}; $y++){
