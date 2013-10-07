@@ -2,34 +2,54 @@
 use strict;
 use warnings FATAL=>'all';
 
+#use DBI;
+use CGI;
+
+my $cgi = new CGI;
+my @buffer;
+
 my %grid_size = (
-	'x' => 100;
-	'y' => 100;
+	'x' => 100,
+	'y' => 100,
 	);
 
 my @grid;
 
-random_walls(1000);
+site($cgi->header());
 
-print_grid();
+randomWalls(1000);
 
-sub random_walls{
+buildGrid();
+
+printSite();
+
+sub randomWalls{
 	my $amount  = $_[0];
 	my @walls;
 	for(my $wall_nr = 0; $wall_nr <= $amount; $wall_nr++){
-		$grid[int(rand($grid_size))][int(rand($grid_size))] = 'wall';
+		$grid[int(rand($grid_size{'x'}))][int(rand($grid_size{'y'}))] = 'wall';
 	} 
 }
 
-sub print_grid{
+sub buildGrid{
 	for(my $x = 0; $x < $grid_size{'x'}; $x++){
-		print "\n";
+		site('</br>');
 		for(my $y = 0; $y < $grid_size{'y'}; $y++){
 			if(!defined($grid[$x][$y])){
-				print "O";
+				site('O');
 			} elsif($grid[$x][$y] eq 'wall'){
-				print "#";
+				site('#');
 			}
 		}
 	}
+}
+
+sub site{
+  push @buffer, $_[0];
+}
+sub printSite{
+  for my $line(@buffer){
+    print $line;
+  }
+  @buffer = ();
 }
