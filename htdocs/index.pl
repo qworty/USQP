@@ -4,6 +4,7 @@ use warnings FATAL=>'all';
 use DBI;
 use CGI;
 use XML::Simple;
+use CGI::Session;
 my $cgi = new CGI;
 my $session = CGI::Session->new or die CGI::Session->errstr;
 my $xml = new XML::Simple;
