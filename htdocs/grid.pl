@@ -35,7 +35,7 @@ sub randomWalls{
 }
 
 sub buildGrid{
-	site('<div style="text-align:center;">');
+	site('<div style="text-align:center;border:2px solid;">');
 	for(my $x = 0; $x < $grid_size{'x'}; $x++){
 		site('<div>');
 		for(my $y = 0; $y < $grid_size{'y'}; $y++){
