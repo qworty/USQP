@@ -35,16 +35,19 @@ sub randomWalls{
 }
 
 sub buildGrid{
+	site('div style="background-color:black;"');
 	for(my $x = 0; $x < $grid_size{'x'}; $x++){
-		site('</br>');
+		site('<div style="display:inline-block;">');
 		for(my $y = 0; $y < $grid_size{'y'}; $y++){
 			if(!defined($grid[$x][$y])){
-				site('<div style="height:10px;width:10px"></div>');
+				site('<div style="height:10px;width:10px;display:inline-block;background-color:white;"></div>');
 			} elsif($grid[$x][$y] eq 'wall'){
-				site('<div style="height:10px;width:10px;background-color:grey"></div>');
+				site('<div style="height:10px;width:10px;background-color:grey;display:inline-block;"></div>');
 			}
 		}
+		site('</div>');
 	}
+	site('</div>');
 }
 
 sub printHeader{
