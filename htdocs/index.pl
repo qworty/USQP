@@ -23,9 +23,10 @@ my %text;
 my ($null, @request) = split("/",$ENV{REQUEST_URI});
 my $dbh = DBI->connect("DBI:mysql:database=$db{db};host=$db{host}","$db{user}", "$db{pass}", {'RaiseError' => 1}) or die "No connection was made with the mysql: $db{db} database";
 
+my %players;
 site($cgi->header());
 site("foo bar test");
-my %players = selectPlayers();
+%players = selectPlayers();
 site(Dumper %players);
 printSite();
 
@@ -42,11 +43,26 @@ sub printSite{
 
 
 sub selectPlayers{
-  my %players;
   my $sth_players = $dbh->prepare("select * from users");
   $sth_players->execute();
   while(my $player = $sth_players->fetchrow_hashref() ){
     $players{$player->{id}} = $player;
+    site(Dumper $player);
   }
   return %players;
+}
+
+sub setWalls{
+}
+
+sub initPlayer{
+  my $x = $_[0];
+  my $y = $_[1];
+  my $life = $_[2];
+  my $shield = $_[3];
+}
+
+sub movePlayer{
+  my $x = $_[0];
+  my $y = $_[1];
 }
