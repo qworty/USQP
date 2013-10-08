@@ -25,7 +25,8 @@ my $dbh = DBI->connect("DBI:mysql:database=$db{db};host=$db{host}","$db{user}", 
 
 site($cgi->header());
 site("foo bar test");
-my %players = selectPlayers();
+selectPlayers();
+#%players = selectPlayers();
 #site(Dumper %players);
 printSite();
 
