@@ -45,13 +45,13 @@ sub printSite{
 
 
 sub selectPlayers{
+  %play;
   my $sth_players = $dbh->prepare("select * from users");
   $sth_players->execute();
   while(my $player = $sth_players->fetchrow_hashref() ){
-    $players{$player->{id}} = $player;
-    site(Dumper $player);
+    $play{$player->{id}} = $player;
   }
-  return %players;
+  return %play;
 }
 
 sub setWalls{
