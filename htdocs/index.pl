@@ -5,6 +5,7 @@ use DBI;
 use CGI;
 use XML::Simple;
 use CGI::Session;
+use Data::Dumper;
 my $cgi = new CGI;
 my $session = CGI::Session->new or die CGI::Session->errstr;
 my $xml = new XML::Simple;
