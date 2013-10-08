@@ -29,7 +29,7 @@ printSite();
 
 sub iniPlayers{
 	my $amount	= $_[0];
-	randomObjects($mount,'user');
+	randomObjects($amount,'user');
 }
 
 sub randomObjects{
@@ -40,7 +40,7 @@ sub randomObjects{
 		my $x = int(rand($grid_size{'x'}));
 		my $y = int(rand($grid_size{'y'}));
 		if(checkObject($x,$y)){
-			$grid[][] = $object;	
+			$grid[$x][$y] = $object;	
 		} else {
 			$wall_nr --; #try again
 		}	
