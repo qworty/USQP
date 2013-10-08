@@ -56,13 +56,24 @@ sub setWalls{
 }
 
 sub initPlayer{
-  my $x = $_[0];
-  my $y = $_[1];
-  my $life = $_[2];
-  my $shield = $_[3];
+  my $userid = $_[0];
+  my $x = $_[1];
+  my $y = $_[2];
+  my $life = $_[3];
+  my $shield = $_[4];
+  my $init_player = $dbh->prepare("insert into progress (userid,round,turn,life,shield,x,y) value(?,?,?,?,?,?,?);
+  $init_player->execute($userid,0,0,$life,$shield,$x,$y);
 }
 
 sub movePlayer{
-  my $x = $_[0];
-  my $y = $_[1];
+  my $userid = $_[0];
+  my $x = $_[1];
+  my $y = $_[2];
+  my $life = $_[3];
+  my $shield = $_[4];
+  my $action = $_[5];
+  my $round = $_[6];
+  my $turn = $_[7];
+  my $move_player = $dbh->prepare("insert into progress (userid,round,turn,life,shield,x,y,action) value(?,?,?,?,?,?,?,?);
+  $init_player->execute($userid,$round,$turn,$life,$shield,$x,$y,$action);
 }
