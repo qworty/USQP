@@ -2,10 +2,28 @@
 use strict;
 use warnings FATAL=>'all';
 
-#use DBI;
+use DBI;
 use CGI;
-
+use XML::Simple;
+use CGI::Session;
+use Data::Dumper;
 my $cgi = new CGI;
+my $session = CGI::Session->new or die CGI::Session->errstr;
+my $xml = new XML::Simple;
+$0 =~ m|(.*?)/|;
+my $path = $1;
+my @buffer;
+my $xmlparse = $xml->XMLin("db.xml");
+my %db;
+$db{db} = $xmlparse->{database}{name};
+$db{host} = $xmlparse->{database}{host};
+$db{user} = $xmlparse->{database}{read}{user};
+$db{pass} = $xmlparse->{database}{read}{password};
+my %vars = $cgi->Vars;
+my %text;
+my ($null, @request) = split("/",$ENV{REQUEST_URI});
+my $dbh = DBI->connect("DBI:mysql:database=$db{db};host=$db{host}","$db{user}", "$db{pass}", {'RaiseError' => 1}) or die "No connection was made with the mysql: $db{db} database";
+
 my @buffer;
 
 my %grid_size = (
@@ -32,7 +50,6 @@ printSite();
 sub randomObjects{
 	my $amount  = $_[0];
 	my $object 	= $_[1];
-	my @walls;
 	for(my $wall_nr = 0; $wall_nr <= $amount; $wall_nr++){
 		my $x = int(rand($grid_size{'x'}));
 		my $y = int(rand($grid_size{'y'}));
