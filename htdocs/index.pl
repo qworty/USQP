@@ -27,7 +27,9 @@ my %players;
 site($cgi->header());
 site("foo bar test");
 %players = selectPlayers();
+site("<pre>");
 site(Dumper %players);
+site("</pre>");
 printSite();
 
 sub site{
