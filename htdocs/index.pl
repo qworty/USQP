@@ -27,7 +27,9 @@ my %players;
 site($cgi->header());
 site("foo bar test");
 %players = selectPlayers();
-site(Dumper %players);
+for my $player(keys(%players)){
+  site("$player -> $players{$player});
+}
 printSite();
 
 sub site{
