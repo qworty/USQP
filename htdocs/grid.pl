@@ -9,8 +9,8 @@ my $cgi = new CGI;
 my @buffer;
 
 my %grid_size = (
-	'x' => 50,
-	'y' => 50,
+	'x' => 4,
+	'y' => 4,
 	);
 
 my @grid;
@@ -18,8 +18,8 @@ my @grid;
 site($cgi->header());
 site(printHeader());
 
-iniPlayers(3);
-randomObjects(300, 'wall');
+iniPlayers(2);
+randomObjects(7, 'wall');
 
 buildGrid();
 
