@@ -20,8 +20,8 @@ my @grid;
 site($cgi->header());
 site(printHeader());
 
-randomObjects($players, 'player');
-randomObjects($walls, 'wall');
+randomObjects($players-1, 'player');
+randomObjects($walls-1, 'wall');
 
 buildGrid();
 
