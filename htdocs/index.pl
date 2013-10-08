@@ -48,9 +48,9 @@ sub selectPlayers{
   while(my $player = $sth_players->fetchrow_hashref() ){
     $players{$player->{id}} = $player;
     site("<pre>");
+    site($player->{id});
     site(Dumper $player);
     site("</pre>");
-    site(Dumper %players);
   }
   return %players;
 }
