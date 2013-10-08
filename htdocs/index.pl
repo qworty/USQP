@@ -44,7 +44,7 @@ sub printSite{
 sub selectPlayers{
   my %players;
   my $sth_players = $dbh->prepare("select * from users");
-  print $sth_players->execute();
+  $sth_players->execute();
   while(my $player = $sth_players->fetchrow_hashref() ){
     $players{$player->{id}} = $player;
   }
