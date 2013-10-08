@@ -27,8 +27,10 @@ my %players;
 site($cgi->header());
 site("foo bar test");
 %players = selectPlayers();
-for my $player(keys(%players)){
-  site("$player -> ".$players{$player});
+for my $id(keys(%players)){
+  for my $player($players{$id}){
+    site("$player");
+  }
 }
 printSite();
 
