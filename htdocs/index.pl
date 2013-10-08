@@ -20,14 +20,12 @@ $db{user} = $xmlparse->{database}{read}{user};
 $db{pass} = $xmlparse->{database}{read}{password};
 my %vars = $cgi->Vars;
 my %text;
-my %players;
 my ($null, @request) = split("/",$ENV{REQUEST_URI});
 my $dbh = DBI->connect("DBI:mysql:database=$db{db};host=$db{host}","$db{user}", "$db{pass}", {'RaiseError' => 1}) or die "No connection was made with the mysql: $db{db} database";
 
 site($cgi->header());
 site("foo bar test");
 selectPlayers();
-site(Dumper %players);
 printSite();
 
 sub site{
@@ -43,9 +41,11 @@ sub printSite{
 
 
 sub selectPlayers{
+my %players;
   my $sth_players = $dbh->prepare("select * from users");
   $sth_players->execute();
   while(my $player = $sth_players->fetchrow_hashref() ){
     $players{$player->{userid}} = $player;
   }
+  return %players;
 }
