@@ -45,7 +45,7 @@ sub printSite{
 
 
 sub selectPlayers{
-  %play;
+  my %play;
   my $sth_players = $dbh->prepare("select * from users");
   $sth_players->execute();
   while(my $player = $sth_players->fetchrow_hashref() ){
