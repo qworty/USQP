@@ -25,7 +25,6 @@ my $dbh = DBI->connect("DBI:mysql:database=$db{db};host=$db{host}","$db{user}", 
 
 my %players;
 site($cgi->header());
-site("foo bar test");
 %players = selectPlayers();
 for my $id(keys(%players)){
   for my $player($players{$id}){
