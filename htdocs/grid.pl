@@ -9,10 +9,10 @@ my $cgi = new CGI;
 my @buffer;
 
 my %grid_size = (
-	'x' => 4,
-	'y' => 4,
+	'x' => 50,
+	'y' => 50,
 	);
-my $walls 		= 10;
+my $walls 		= 300;
 my $players 	= 3;
 
 my @grid;
