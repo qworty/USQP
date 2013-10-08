@@ -76,5 +76,5 @@ sub movePlayer{
   my $round = $_[6];
   my $turn = $_[7];
   my $move_player = $dbh->prepare("insert into progress (userid,round,turn,life,shield,x,y,action) value(?,?,?,?,?,?,?,?)");
-  $init_player->execute($userid,$round,$turn,$life,$shield,$x,$y,$action);
+  $move_player->execute($userid,$round,$turn,$life,$shield,$x,$y,$action);
 }
