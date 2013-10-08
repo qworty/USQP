@@ -12,25 +12,22 @@ my %grid_size = (
 	'x' => 4,
 	'y' => 4,
 	);
+my $walls 		= 10;
+my $players 	= 3;
 
 my @grid;
 
 site($cgi->header());
 site(printHeader());
 
-iniPlayers(2);
-randomObjects(7, 'wall');
+randomObjects($players, 'player');
+randomObjects($walls, 'wall');
 
 buildGrid();
 
 site(printFooter());
 
 printSite();
-
-sub iniPlayers{
-	my $amount	= $_[0];
-	randomObjects($amount,'user');
-}
 
 sub randomObjects{
 	my $amount  = $_[0];
@@ -67,7 +64,7 @@ sub buildGrid{
 				site('<div style="height:10px;width:10px;display:inline-block;background-color:white;"></div>');
 			} elsif($grid[$x][$y] eq 'wall'){
 				site('<div style="height:10px;width:10px;background-color:grey;display:inline-block;"></div>');
-			} elsif($grid[$x][$y] eq 'user'){
+			} elsif($grid[$x][$y] eq 'player'){
 				site('<div style="height:10px;width:10px;background-color:yellow;display:inline-block;"></div>');
 			}
 		}
