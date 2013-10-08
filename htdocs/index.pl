@@ -28,7 +28,7 @@ site($cgi->header());
 %players = selectPlayers();
 for my $id(keys(%players)){
   for my $player($players{$id}){
-    site("$player->{id} - $player->{name}");
+    site("$player->{id} - $player->{name} <br />");
   }
 }
 printSite();
