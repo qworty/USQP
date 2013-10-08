@@ -5,6 +5,7 @@ use DBI;
 use CGI;
 use XML::Simple;
 use CGI::Session;
+use Data::Dumper;
 my $cgi = new CGI;
 my $session = CGI::Session->new or die CGI::Session->errstr;
 my $xml = new XML::Simple;
@@ -19,11 +20,14 @@ $db{user} = $xmlparse->{database}{read}{user};
 $db{pass} = $xmlparse->{database}{read}{password};
 my %vars = $cgi->Vars;
 my %text;
+my %players;
 my ($null, @request) = split("/",$ENV{REQUEST_URI});
 my $dbh = DBI->connect("DBI:mysql:database=$db{db};host=$db{host}","$db{user}", "$db{pass}", {'RaiseError' => 1}) or die "No connection was made with the mysql: $db{db} database";
 
 site($cgi->header());
 site("foo bar test");
+selectPlayers();
+site(Dumper %players);
 printSite();
 
 sub site{
@@ -35,4 +39,13 @@ sub printSite{
     print $line;
   }
   @buffer = ();
+}
+
+
+sub selectPlayers{
+  my $sth_players = $dbh->prepare("select * from users");
+  $sth_players->execute();
+  while(my $player = $sth_players->fetchrow_hashref() ){
+    $players{$player->{userid}} = $player;
+  }
 }
