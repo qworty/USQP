@@ -50,6 +50,7 @@ sub selectPlayers{
     site("<pre>");
     site(Dumper $player);
     site("</pre>");
+    site(Dumper %players);
   }
   return %players;
 }
