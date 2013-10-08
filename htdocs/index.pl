@@ -27,9 +27,7 @@ my %players;
 site($cgi->header());
 site("foo bar test");
 %players = selectPlayers();
-site("<pre>");
 site(Dumper %players);
-site("</pre>");
 printSite();
 
 sub site{
@@ -45,13 +43,13 @@ sub printSite{
 
 
 sub selectPlayers{
-  my %play;
   my $sth_players = $dbh->prepare("select * from users");
   $sth_players->execute();
   while(my $player = $sth_players->fetchrow_hashref() ){
-    $play{$player->{id}} = $player;
+    $players{$player->{id}} = $player;
+    site(Dumper $player);
   }
-  return %play;
+  return %players;
 }
 
 sub setWalls{
