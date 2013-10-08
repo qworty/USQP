@@ -24,7 +24,6 @@ my %text;
 my ($null, @request) = split("/",$ENV{REQUEST_URI});
 my $dbh = DBI->connect("DBI:mysql:database=$db{db};host=$db{host}","$db{user}", "$db{pass}", {'RaiseError' => 1}) or die "No connection was made with the mysql: $db{db} database";
 
-my @buffer;
 
 my %grid_size = (
 	'x' => 50,
