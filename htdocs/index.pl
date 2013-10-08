@@ -25,10 +25,9 @@ my $dbh = DBI->connect("DBI:mysql:database=$db{db};host=$db{host}","$db{user}", 
 
 site($cgi->header());
 site("foo bar test");
+%players = selectPlayers();
+site(Dumper %players);
 printSite();
-selectPlayers();
-#%players = selectPlayers();
-#site(Dumper %players);
 
 sub site{
   push @buffer, $_[0];
@@ -47,8 +46,7 @@ sub selectPlayers{
   my $sth_players = $dbh->prepare("select * from users");
   print $sth_players->execute();
   while(my $player = $sth_players->fetchrow_hashref() ){
-    print Dumper $player;
-    #$players{$player->{userid}} = $player;
+    $players{$player->{id}} = $player;
   }
-  #return %players;
+  return %players;
 }
