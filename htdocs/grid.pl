@@ -18,7 +18,7 @@ my @grid;
 site($cgi->header());
 site(printHeader());
 
-iniPlayers(3);
+iniPlayers(2);
 randomObjects(300, 'wall');
 
 buildGrid();
